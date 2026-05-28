@@ -1,43 +1,306 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Compliance Platform for Research Analysts</title>
+    <meta name="description" content="We help Research Analysts and firms navigate complex compliance requirements so they can focus on delivering high-quality research without worry.">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4356D6',
+                        primaryDark: '#2E3EB8',
+                        brandDark: '#1A1A1A',
+                        brandLight: '#F5F5F5',
+                        neutralGray: '#666666',
+                        navyBlue: '#1E293B',
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        figtree: ['Figtree', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        premium: '0 20px 40px -15px rgba(67, 86, 214, 0.1)',
+                        card: '0 10px 30px -10px rgba(0, 0, 0, 0.04)',
+                        cardHover: '0 20px 40px -10px rgba(67, 86, 214, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        .underline-highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 15px;
+            background-image: url('./Assets/Assets - Images & Icons/underline-Vector.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+        .contact-icon-img {
+            filter: brightness(0) invert(1);
+            transition: filter 300ms;
+        }
+        .group:hover .contact-icon-img {
+            filter: none;
         }
     </style>
 </head>
-<body class="antialiased">
-    
-    <div class="flex justify-between items-center border border-black/5 h-[100px] px-[100px] text-[18px] font-bold">
-        <div class="">
-            <img class="h-[58px]" src="./Assets/Assets - Images & Icons/Logo.png" alt="Logo">
-        </div>
-        <div class="flex gap-[26px]">
-            <button class="text-[#4356D6]">Home</button>
-            <button class="font-normal">About Us</button>
-            <button class="font-normal">Our Services</button>
-            <button class="font-normal">Pricing</button>
-            <button class="font-normal">FAQ</button>
-            <button class="font-normal">Contact</button>
-        </div>
-        <div>
-            <button class="flex items-center bg-[#4356D6] h-[46px] rounded-xl p-6 gap-3 text-white font-medium">
-                <img src="./Assets/Assets - Images & Icons/Contact-icon.png" alt="contact"> 
-                Contact Us
+<body class="antialiased text-navyBlue flex flex-col min-h-screen relative">
+
+    <div class="absolute top-[20%] left-[-50px] opacity-20 pointer-events-none z-0 hidden lg:block">
+        <img src="./Assets/Assets - Images & Icons/Vector1.png" alt="" class="w-[138px] h-[35px]">
+    </div>
+    <div class="absolute top-[50%] right-0 opacity-30 pointer-events-none z-0 hidden lg:block">
+        <img src="./Assets/Assets - Images & Icons/Vector2.png" alt="" class="w-[36px] h-[129px]">
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center h-[80px] lg:h-[100px] px-6 md:px-8 lg:px-[100px] text-[18px]">
+            
+            <a href="#" class="flex-shrink-0 flex items-center hover:opacity-90 transition-opacity">
+                <img class="h-[46px] lg:h-[58px]" src="./Assets/Assets - Images & Icons/Logo.png" alt="Logo">
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-[26px] font-bold">
+                <a href="#" class="text-primary hover:text-primary transition-all">Home</a>
+                <a href="#about" class="font-normal text-navyBlue/70 hover:text-primary transition-all">About Us</a>
+                <a href="#services" class="font-normal text-navyBlue/70 hover:text-primary transition-all">Our Services</a>
+                <a href="#pricing" class="font-normal text-navyBlue/70 hover:text-primary transition-all">Pricing</a>
+                <a href="#faq" class="font-normal text-navyBlue/70 hover:text-primary transition-all">FAQ</a>
+                <a href="#contact" class="font-normal text-navyBlue/70 hover:text-primary transition-all">Contact</a>
+            </nav>
+
+            <div class="hidden lg:block">
+                <a href="#contact" class="group inline-flex items-center justify-center bg-primary hover:bg-white border-2 border-primary text-white hover:text-primary h-[46px] rounded-xl px-6 gap-3 text-[18px] font-bold transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-0.5 active:translate-y-0">
+                    <img src="./Assets/Assets - Images & Icons/Contact-icon.png" alt="" class="w-[26px] h-[26px] contact-icon-img transition-all duration-300"> 
+                    Contact Us
+                </a>
+            </div>
+
+            <button id="menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded-lg text-navyBlue/80 hover:text-primary hover:bg-slate-100 transition-all focus:outline-none" aria-label="Toggle menu">
+                <img src="./Assets/Assets - Images & Icons/Menu.png" alt="Menu" class="w-6 h-6">
             </button>
         </div>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0" aria-hidden="true">
+        <div id="mobile-menu-drawer" class="fixed right-0 top-0 h-full w-[300px] bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out z-50">
+            
+            <div class="flex justify-between items-center px-6 py-5 border-b border-slate-100">
+                <img src="./Assets/Assets - Images & Icons/Logo.png" alt="Logo" class="h-8">
+                <button id="close-menu-btn" class="p-2 rounded-full text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-all focus:outline-none" aria-label="Close menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="flex-grow overflow-y-auto flex flex-col py-4 font-figtree">
+                <a href="#" class="mobile-nav-link flex items-center gap-4 px-6 py-4 text-[18px] font-semibold text-primary bg-primary/5 border-l-4 border-primary transition-all">
+                    <img src="./Assets/Assets - Images & Icons/Home.png" alt="Home icon" class="w-6 h-6 opacity-90">
+                    Home
+                </a>
+                <a href="#about" class="mobile-nav-link flex items-center gap-4 px-6 py-4 text-[18px] font-medium text-navyBlue/70 hover:text-primary hover:bg-slate-50 transition-all">
+                    <img src="./Assets/Assets - Images & Icons/AboutUs.png" alt="About icon" class="w-6 h-6 opacity-70">
+                    About Us
+                </a>
+                <a href="#services" class="mobile-nav-link flex items-center gap-4 px-6 py-4 text-[18px] font-medium text-navyBlue/70 hover:text-primary hover:bg-slate-50 transition-all">
+                    <img src="./Assets/Assets - Images & Icons/Our Services.png" alt="Services icon" class="w-6 h-6 opacity-70">
+                    Our Services
+                </a>
+                <a href="#pricing" class="mobile-nav-link flex items-center gap-4 px-6 py-4 text-[18px] font-medium text-navyBlue/70 hover:text-primary hover:bg-slate-50 transition-all">
+                    <img src="./Assets/Assets - Images & Icons/Pricing.png" alt="Pricing icon" class="w-6 h-6 opacity-70">
+                    Pricing
+                </a>
+                <a href="#faq" class="mobile-nav-link flex items-center gap-4 px-6 py-4 text-[18px] font-medium text-navyBlue/70 hover:text-primary hover:bg-slate-50 transition-all">
+                    <img src="./Assets/Assets - Images & Icons/FAQ.png" alt="FAQ icon" class="w-6 h-6 opacity-70">
+                    FAQ
+                </a>
+                <a href="#contact" class="mobile-nav-link flex items-center gap-4 px-6 py-4 text-[18px] font-medium text-navyBlue/70 hover:text-primary hover:bg-slate-50 transition-all">
+                    <img src="./Assets/Assets - Images & Icons/Contact.png" alt="Contact icon" class="w-6 h-6 opacity-70">
+                    Contact
+                </a>
+            </div>
+
+            <div class="p-6 border-t border-slate-100">
+                <a href="#contact" id="mobile-cta-btn" class="group w-full flex justify-center items-center bg-primary hover:bg-white border-2 border-primary text-white hover:text-primary h-[50px] rounded-xl font-bold gap-3 transition-all duration-300">
+                    <img src="./Assets/Assets - Images & Icons/Contact-icon.png" alt="" class="w-6 h-6 contact-icon-img transition-all duration-300"> 
+                    Contact Us
+                </a>
+            </div>
+        </div>
     </div>
+
+    <main class="flex-grow z-10">
+
+        <section id="hero" class="relative py-12 md:py-20 lg:py-24 max-w-7xl mx-auto px-6 md:px-8 lg:px-[100px] overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <div class="lg:col-span-7 flex flex-col space-y-6 md:space-y-8 text-left z-10">
+                    
+                    <h1 class="text-[38px] md:text-[54px] lg:text-[64px] font-black leading-[1.1] text-navyBlue font-sans tracking-tight">
+                        Simplifying 
+                        <span class="relative inline-block text-primary underline-highlight mr-2">Compliance</span> 
+                        for Research Analysts
+                    </h1>
+
+                    <p class="text-[18px] md:text-[20px] text-navyBlue/70 leading-relaxed max-w-[600px] font-sans">
+                        Stay focused on your insights — we’ll handle the compliance. Our expert solutions ensure your research practices meet every regulatory requirement with confidence and ease.
+                    </p>
+
+                    <ul class="space-y-4 font-sans text-[18px]">
+                        <li class="flex items-center gap-4 text-navyBlue/80 hover:text-navyBlue transition-colors group">
+                            <img src="./Assets/Assets - Images & Icons/check-sign.png" alt="Check" class="w-6 h-6 flex-shrink-0 transform group-hover:scale-110 transition-transform">
+                            <span>End-to-end compliance support</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-navyBlue/80 hover:text-navyBlue transition-colors group">
+                            <img src="./Assets/Assets - Images & Icons/check-sign.png" alt="Check" class="w-6 h-6 flex-shrink-0 transform group-hover:scale-110 transition-transform">
+                            <span>Regulatory filings made simple</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-navyBlue/80 hover:text-navyBlue transition-colors group">
+                            <img src="./Assets/Assets - Images & Icons/check-sign.png" alt="Check" class="w-6 h-6 flex-shrink-0 transform group-hover:scale-110 transition-transform">
+                            <span>Tailored solutions for independent analysts & firms</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 font-sans">
+                        <a href="#contact" class="inline-flex items-center justify-center border-2 border-primary bg-primary hover:bg-white text-white hover:text-primary text-[18px] font-bold px-8 py-4 rounded-xl transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-sm">
+                            Get Started
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center border-2 border-primary bg-white hover:bg-primary text-primary hover:text-white text-[18px] font-bold px-8 py-4 rounded-xl transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/25">
+                            Book a Consultation
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center items-center relative z-0">
+                    
+                    <div class="absolute inset-0 bg-primary/5 rounded-full filter blur-3xl opacity-50 w-full h-full transform scale-110"></div>
+                    
+                    <img src="./Assets/Assets - Images & Icons/Banner Image.png" alt="Research Compliance Illustration" class="w-full max-w-[500px] lg:max-w-none h-auto object-contain transform hover:scale-[1.02] transition-transform duration-500 pointer-events-none drop-shadow-md">
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="bg-slate-50/50 border-t border-b border-slate-100 py-16 md:py-24 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-[100px] relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16 md:mb-20 space-y-4">
+                    <h2 class="text-[34px] md:text-[46px] lg:text-[48px] font-extrabold leading-tight text-navyBlue tracking-tight">
+                        Why Compliance Matters for Research Analysts
+                    </h2>
+                    <p class="text-[18px] text-navyBlue/70 leading-relaxed">
+                        In today’s regulatory environment, even a small oversight can lead to penalties, reputational risks, and loss of client trust. We help Research Analysts and firms navigate complex compliance requirements so they can focus on delivering high-quality research without worry.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <div class="lg:col-span-5 flex justify-center relative">
+                        <div class="absolute -inset-4 bg-primary/5 rounded-2xl filter blur-xl opacity-30"></div>
+                        <img src="./Assets/Assets - Images & Icons/Section2-Image.png" alt="Growth and Rating Statistics" class="w-full max-w-[450px] lg:max-w-none h-auto object-contain rounded-2xl shadow-premium transform hover:scale-[1.01] transition-transform duration-500 pointer-events-none">
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        
+                        <div class="bg-[#F5F6FE]/60 p-6 md:p-8 rounded-2xl border border-transparent hover:border-primary transition-all duration-300 transform hover:-translate-y-1 flex flex-col sm:flex-row gap-5 items-start group">
+                            <img src="./Assets/Assets - Images & Icons/Regulatory Clarity.png" alt="Clarity icon" class="w-9 h-9 object-contain flex-shrink-0 mt-1">
+                            <div class="space-y-2">
+                                <h3 class="text-[22px] font-extrabold text-navyBlue group-hover:text-primary transition-colors duration-300">Regulatory Clarity</h3>
+                                <p class="text-[18px] text-navyBlue/70 leading-relaxed">
+                                    We decode complex compliance rules into simple, actionable steps.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#F5F6FE]/60 p-6 md:p-8 rounded-2xl border border-transparent hover:border-primary transition-all duration-300 transform hover:-translate-y-1 flex flex-col sm:flex-row gap-5 items-start group">
+                            <img src="./Assets/Assets - Images & Icons/Hassle-Free Filings Clarity.png" alt="Filings icon" class="w-9 h-9 object-contain flex-shrink-0 mt-1">
+                            <div class="space-y-2">
+                                <h3 class="text-[22px] font-extrabold text-navyBlue group-hover:text-primary transition-colors duration-300">Hassle-Free Filings</h3>
+                                <p class="text-[18px] text-navyBlue/70 leading-relaxed">
+                                    From registration to ongoing reporting — we manage it end-to-end.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#F5F6FE]/60 p-6 md:p-8 rounded-2xl border border-transparent hover:border-primary transition-all duration-300 transform hover:-translate-y-1 flex flex-col sm:flex-row gap-5 items-start group">
+                            <img src="./Assets/Assets - Images & Icons/Risk Protection.png" alt="Protection icon" class="w-9 h-9 object-contain flex-shrink-0 mt-1">
+                            <div class="space-y-2">
+                                <h3 class="text-[22px] font-extrabold text-navyBlue group-hover:text-primary transition-colors duration-300">Risk Protection</h3>
+                                <p class="text-[18px] text-navyBlue/70 leading-relaxed">
+                                    Stay ahead of audits, inspections, and compliance gaps with proactive support.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const navLinks = document.querySelectorAll('.mobile-nav-link, #mobile-cta-btn');
+
+            const openMenu = () => {
+                mobileMenu.classList.remove('hidden');
+
+                void mobileMenu.offsetWidth;
+                mobileMenu.classList.add('opacity-100');
+                drawer.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeMenu = () => {
+                mobileMenu.classList.remove('opacity-100');
+                drawer.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+
+                setTimeout(() => {
+                    if (!mobileMenu.classList.contains('opacity-100')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }, 300);
+            };
+
+            menuBtn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMenu();
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+    </script>
 </body>
 </html>
